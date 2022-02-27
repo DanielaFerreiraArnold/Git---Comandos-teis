@@ -2,5 +2,5 @@
 
 O repositório apresenta uma lista de comandos úteis do Git.
 
-##Fonte das informações:
+## Fonte das informações:
 [Comandos Git](https://comandosgit.github.io/)
