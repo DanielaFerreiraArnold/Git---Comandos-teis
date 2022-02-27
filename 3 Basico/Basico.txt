@@ -1,0 +1,109 @@
+Básico
+
+git add
+Gravando Alterações
+
+Quando um repositório é inicialmente clonado, todos os seus arquivos estarão monitorados e inalterados porque você simplesmente os obteve e ainda não os editou. 
+Conforme você edita esses arquivos, o Git passa a vê-los como modificados, porque você os alterou desde seu último commit. Você seleciona esses arquivos modificados e então faz o commit de todas as alterações selecionadas e o ciclo se repete.
+
+Monitorando Novos Arquivos
+Para passar a monitorar um novo arquivo, use o comando git add. Para monitorar o arquivo README, você pode rodar isso:
+
+git add README
+Se você rodar o comando git status, você pode ver que o seu arquivo README agora está sendo monitorado. 
+Os arquivos monitorados serão os que faram parte do commit.
+
+git status
+Verificando o Status
+
+A principal ferramenta utilizada para determinar quais arquivos estão em quais estados é o comando:
+
+git status
+O comando lhe mostra em qual branch você se encontra. Vamos dizer que você adicione um novo arquivo em seu projeto, um simples arquivo README. 
+Caso o arquivo não exista e você execute git status, você verá o arquivo não monitorado dessa forma:
+
+# On branch master
+# Untracked files:
+# (use "git add {file}..." to include in what will be committed)
+#
+# README
+nothing added to commit but untracked files present (use "git add" to track)
+Você pode ver que o seu novo arquivo README não está sendo monitorado, pois está listado sob o cabeçalho "Untracked files" na saída do comando status. 
+Não monitorado significa basicamente que o Git está vendo um arquivo que não existia na última captura (commit); 
+o Git não vai incluí-lo nas suas capturas de commit até que você o diga explicitamente que assim o faça. 
+Ele faz isso para que você não inclua acidentalmente arquivos binários gerados, ou outros arquivos que você não têm a intenção de incluir. 
+Digamos, que você queira incluir o arquivo README, portanto vamos começar a monitorar este arquivo.
+
+git diff
+Verificando Mudanças
+
+Se o comando git status for muito vago — você quer saber exatamente o que você alterou, não apenas quais arquivos foram alterados — você pode utilizar o comando.
+
+git diff
+Apesar do comando git status responder essas duas perguntas de maneira geral, o git diff mostra as linhas exatas que foram adicionadas e removidas — o patch, por assim dizer.
+Se você quer ver o que selecionou que irá no seu próximo commit, pode utilizar:
+
+git diff --cached
+git commit
+Commits
+
+Armazena o conteúdo atual do índice em um novo commit, juntamente com uma mensagem de registro do usuário que descreve as mudanças.
+Se usa o commit depois de já ter feito o git add, para fazer o commit:
+
+git commit -m "Mensagem"
+Para commitar também os arquivos versionados mesmo não estando no Stage basta adicionar o parâmetro -a
+
+git commit -a -m "Mensagem"
+Refazendo commit quando esquecer de adicionar um arquivo no Stage:
+
+git commit -m "Mensagem" --amend
+O amend é destrutivo e só deve ser utilizado antes do commit ter sido enviado ao servidor remoto.
+
+git reset
+Desfazendo Coisas
+
+Em qualquer fase, você pode querer desfazer alguma coisa. Aqui, veremos algumas ferramentas básicas para desfazer modificações que você fez. 
+Cuidado, porque você não pode desfazer algumas dessas mudanças. Essa é uma das poucas áreas no Git onde você pode perder algum trabalho se fizer errado.
+Para voltar ao último commit:
+
+git reset --hard HEAD~1
+Para voltar ao último commit e mantém os últimos arquivos no Stage:
+
+git reset --soft HEAD~1
+Volta para o commit com a hash XXXXXXXXXXX:
+
+git reset --hard XXXXXXXXXXX
+Recuperando commit apagado pelo git reset
+Para visualizar os hashs
+
+git reflog
+E para aplicar:
+
+git merge {hash}
+git rm
+Removendo Arquivos
+
+Para remover um arquivo do Git, você tem que removê-lo dos arquivos que estão sendo monitorados (mais precisamente, removê-lo da sua área de seleção) e então fazer o commit. 
+O comando git rm faz isso e também remove o arquivo do seu diretório para você não ver ele como arquivo não monitorado (untracked file) na próxima vez.
+
+git rm -f {arquivo}
+Se você modificou o arquivo e já o adicionou na área de seleção, você deve forçar a remoção com a opção -f. 
+Essa é uma funcionalidade de segurança para prevenir remoções acidentais de dados que ainda não foram gravados em um snapshot e não podem ser recuperados do Git.
+
+git mv
+Movendo Arquivos
+
+Diferente de muitos sistemas VCS, o Git não monitora explicitamente arquivos movidos.
+É um pouco confuso que o Git tenha um comando mv. Se você quiser renomear um arquivo no Git, você pode fazer isso com
+
+git mv arquivo_origem arquivo_destino
+e funciona. De fato, se você fizer algo desse tipo e consultar o status, você verá que o Git considera que o arquivo foi renomeado.
+
+No entanto, isso é equivalente a rodar algo como:
+
+mv README.txt README
+git rm README.txt
+git add README
+O Git descobre que o arquivo foi renomeado implicitamente, então ele não se importa se você renomeou por este caminho ou com o comando mv. 
+A única diferença real é que o comando mv é mais conveniente, executa três passos de uma vez. O mais importante, você pode usar qualquer ferramenta para renomear um arquivo, 
+e usar add/rm depois, antes de consolidar com o commit.

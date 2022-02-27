@@ -1,0 +1,37 @@
+git init
+Repositório Git
+
+Você pode obter um projeto Git utilizando duas formas principais. 
+A primeira faz uso de um projeto ou diretório existente e o importa para o Git. 
+A segunda clona um repositório Git existente a partir de outro servidor.
+
+
+Inicializando um Repositório em um Diretório Existente
+Caso você esteja iniciando o monitoramento de um projeto existente com Git, você precisa ir para o diretório do projeto e digitar
+
+git init
+Isso cria um novo subdiretório chamado .git que contem todos os arquivos necessários de seu repositório — um esqueleto de repositório Git. 
+Neste ponto, nada em seu projeto é monitorado.
+
+
+Primeira versão
+Caso você queira começar a controlar o versionamento dos arquivos existentes (diferente de um diretório vazio), 
+você provavelmente deve começar a monitorar esses arquivos e fazer um commit inicial. Você pode realizar isso com poucos comandos
+
+touch .gitignore
+git add .gitignore
+git commit -m "Versão inicial do projeto"
+Bem, nós iremos repassar esses comandos em um momento. Neste ponto, você tem um repositório Git com arquivos monitorados e um commit inicial.
+
+git clone
+Clonando um Repositório Existente
+
+Você clona um repositório com git clone [url]. 
+Por exemplo, caso você queria clonar a biblioteca Git do Ruby chamada Grit, você pode fazê-lo da seguinte forma:
+
+git clone git://github.com/schacon/grit.git
+Se você entrar no novo diretório grit, você verá todos os arquivos do projeto nele, pronto para serem editados ou utilizados. 
+Caso você queira clonar o repositório em um diretório diferente de grit, é possível especificar esse diretório utilizando a opção abaixo:
+
+git clone git://github.com/schacon/grit.git mygrit
+Este comando faz exatamente a mesma coisa que o anterior, mas o diretório alvo será chamado mygrit.

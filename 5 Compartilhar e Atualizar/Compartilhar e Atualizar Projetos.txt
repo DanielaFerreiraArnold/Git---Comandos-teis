@@ -1,0 +1,28 @@
+Compartilhar e Atualizar Projetos
+git fetch
+Fazendo o Fetch
+
+Para pegar dados dos seus projetos remotos, você pode executar:
+
+git fetch origin
+Esse comando vai até o projeto remoto e pega todos os dados que você ainda não tem. 
+Depois de fazer isso, você deve ter referências para todos os branches desse remoto, onde você pode fazer o merge ou inspecionar a qualquer momento.
+
+git pull
+Atualizando local
+
+Incorpora as alterações de um repositório remoto no branch atual. Em seu modo padrão, git pull é uma abreviação para git fetch seguido de git merge FETCH_HEAD. 
+Por exemplo, se eu estiver em uma branch chamada develop e quiser atualizar caso haja atualizações remotamente:
+
+git pull origin develop
+git push
+Empurrando seus commits
+
+O git push é o comando em que você transfere commits a partir do seu repositório local para um repositório remoto. 
+É a contrapartida do git fetch, que busca importações e comprometem as agências locais, utilizando o git push as exportações comprometem as filiais remotas.
+Para fazer isso, você executa git push [nome_do_repositório_remoto] [nome_da_sua_branch_local], que vai tentar fazer que o [nome_do_repositório_remoto] 
+receba a sua branch [nome_da_sua_branch_local] contendo todos seus commits com alterações. Por exemplo:
+
+git push origin develop
+git remote
+git submodule

@@ -1,0 +1,80 @@
+Branch e Merge
+git branch
+Branch Básico
+
+Um branch no Git é simplesmente um leve ponteiro móvel para um dos commits. O nome do branch padrão no Git é master. 
+Como você inicialmente fez commits, você tem um branch principal (master branch) que aponta para o último commit que você fez. 
+Cada vez que você faz um commit ele avança automaticamente.
+O que acontece se você criar um novo branch? Bem, isso cria um novo ponteiro para que você possa se mover.
+ Vamos dizer que você crie um novo branch chamado testing. Você faz isso com o comando git branch:
+
+git branch testing
+Isso cria um novo ponteiro para o mesmo commit em que você está no momento.
+Para mudar para um branch existente, você executa o comando git checkout. Vamos mudar para o novo branch testing:
+
+git checkout testing
+Isto move o HEAD para apontar para o branch testing.
+
+git checkout
+Mudando de Branch
+
+Com o git checkout você pode mudar de branch, caso a branch ainda não exista você poderá passar o parâmetro -b para criar.
+
+git checkout -b {nome_da_branch}
+git merge
+Merge Básico
+
+Suponha que você decidiu que o trabalho na tarefa #53 está completo e pronto para ser feito o merge no branch master. 
+Para fazer isso, você fará o merge do seu branch iss53, bem como o merge do branch hotfix de antes.
+Tudo que você tem a fazer é executar o checkout do branch para onde deseja fazer o merge e então rodar o comando git merge:
+
+git checkout master
+git merge iss53
+git mergetool
+Resolvendo conflitos
+
+Se você quer usar uma ferramenta gráfica para resolver esses problemas, 
+você pode executar o seguinte comando que abre uma ferramenta visual de merge adequada e percorre os conflitos.
+
+git mergetool
+Arquivos Temporários
+git mergetool cria * .orig arquivos de backup ao resolver fusões. 
+Estes são seguros para remover uma vez que um arquivo foi fundida e sua git mergetool sessão foi concluída.
+
+git log
+Histórico de Commits
+
+Depois que você tiver criado vários commits, ou se clonou um repositório com um histórico de commits existente, você provavelmente vai querer ver o que aconteceu. 
+A ferramente mais básica e poderosa para fazer isso é o comando:
+
+git log
+git stash
+Fazendo Stash
+
+Muitas vezes, quando você está trabalhando em uma parte do seu projeto, as coisas estão em um estado confuso e você quer mudar de branch por um tempo para trabalhar em outra coisa. 4
+O problema é, você não quer fazer o commit de um trabalho incompleto somente para voltar a ele mais tarde. A resposta para esse problema é o comando git stash.
+Você quer mudar de branch, mas não quer fazer o commit do que você ainda está trabalhando; você irá fazer o stash das modificações. 
+Para fazer um novo stash na sua pilha, execute:
+
+git stash
+Seu diretório de trabalho estará limpo.
+Neste momento, você pode facilmente mudar de branch e trabalhar em outra coisa; suas alterações estão armazenadas na sua pilha. 
+Para ver as stashes que você guardou, você pode usar
+
+git stash list
+Você pode aplicar aquele que acabou de fazer o stash com o comando mostrado na saída de ajuda do comando stash original: git stash apply. 
+Se você quer aplicar um dos stashes mais antigos, você pode especificá-lo, assim: git stash apply stash@{2}. 
+Se você não especificar um stash, Git assume que é o stash mais recente e tenta aplicá-lo.
+
+git tag
+Tagging
+
+Git tem a habilidade de criar tags em pontos específicos na história do código como pontos importantes. 
+Geralmente as pessoas usam esta funcionalidade para marcar pontos de release (v1.0, e por aí vai). 
+Nesta seção, você aprenderá como listar as tags disponíveis, como criar novas tags, e quais são os tipos diferentes de tags.
+Para listar as tags execute:
+
+git tag
+Para criar uma tag basta executar o seguinte comando, caso não queira criar a tag anotada, somente retire os parâmetros -a e -m.
+
+git tag -a v1.4 -m 'my version 1.4'
